@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">MockGPS</string>
+
+    <!-- Permission dialogs -->
+    <string name="dialog_title_location_permission">Location Permission Required</string>
+    <string name="dialog_message_location_permission">This app needs location permission to mock GPS coordinates. The permission is required to register as a location provider.</string>
+    <string name="dialog_title_permission_required">Permission Required</string>
+    <string name="dialog_message_permission_denied">Location permission has been permanently denied. Please enable it in app settings to use mock location feature.</string>
+
+    <!-- Buttons -->
+    <string name="button_grant_permission">Grant Permission</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_open_settings">Open Settings</string>
+    <string name="button_mock_now">Mock Now</string>
+    <string name="button_disable_mock">Disable Mock</string>
+
+    <!-- Labels -->
+    <string name="label_coordinates">Coordinates</string>
+    <string name="label_latitude">Latitude</string>
+    <string name="label_longitude">Longitude</string>
+    <string name="hint_latitude">-90 to 90</string>
+    <string name="hint_longitude">-180 to 180</string>
+
+    <!-- Status -->
+    <string name="status_mock_active">Mock Location Active</string>
+    <string name="status_mock_inactive">Mock Location Inactive</string>
+    <string name="help_developer_options">Make sure to enable Developer Options and select this app as the mock location app.</string>
+
+    <!-- Error messages -->
+    <string name="error_invalid_latitude">Invalid latitude format. Please enter a valid number.</string>
+    <string name="error_invalid_longitude">Invalid longitude format. Please enter a valid number.</string>
+    <string name="error_start_provider">Failed to start mock location provider</string>
+    <string name="error_set_location">Failed to set mock location</string>
+    <string name="error_stop_provider">Failed to stop mock location</string>
+
+    <!-- Success messages -->
+    <string name="success_mock_active">Mock location active: %1$s, %2$s</string>
+    <string name="success_mock_disabled">Mock location disabled</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_loading">Loading</string>
+</resources>
