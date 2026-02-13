@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -49,10 +50,10 @@ fun MapPickerScreen(
             onMapClick = { latLng -> selectedLocation = latLng }
         ) {
             selectedLocation?.let { location ->
-                val markerState = rememberMarkerState(
-                    key = "${location.latitude},${location.longitude}",
-                    position = location
-                )
+                val markerState = rememberMarkerState(position = location)
+                LaunchedEffect(location) {
+                    markerState.position = location
+                }
                 Marker(
                     state = markerState,
                     title = stringResource(R.string.map_marker_title)
