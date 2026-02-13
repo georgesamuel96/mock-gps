@@ -45,6 +45,7 @@
 
     <!-- Accessibility -->
     <string name="accessibility_loading">Loading</string>
+    <string name="accessibility_my_location">Go to my location</string>
 
     <!-- Notification -->
     <string name="notification_channel_name">Mock Location</string>
