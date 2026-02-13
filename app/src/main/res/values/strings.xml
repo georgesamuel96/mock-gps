@@ -13,6 +13,12 @@
     <string name="button_open_settings">Open Settings</string>
     <string name="button_mock_now">Mock Now</string>
     <string name="button_disable_mock">Disable Mock</string>
+    <string name="button_pick_on_map">Pick on Map</string>
+    <string name="button_use_this_location">Use This Location</string>
+
+    <!-- Map picker -->
+    <string name="map_marker_title">Selected Location</string>
+    <string name="map_coordinates_display">%1$s, %2$s</string>
 
     <!-- Labels -->
     <string name="label_coordinates">Coordinates</string>

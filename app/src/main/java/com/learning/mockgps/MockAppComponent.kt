@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -48,6 +50,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import com.learning.mockgps.ui.theme.MockGPSTheme
@@ -57,6 +60,20 @@ fun MockGpsApp(
     uiState: MockLocationUiState,
     actions: MockLocationActions
 ) {
+    if (uiState.showMapPicker) {
+        val initialLat = uiState.latitude.toDoubleOrNull()
+            ?: MockLocationConstants.DEFAULT_LATITUDE.toDouble()
+        val initialLng = uiState.longitude.toDoubleOrNull()
+            ?: MockLocationConstants.DEFAULT_LONGITUDE.toDouble()
+        MapPickerScreen(
+            initialLatitude = initialLat,
+            initialLongitude = initialLng,
+            onLocationSelected = { lat, lng -> actions.onMapLocationSelected(lat, lng) },
+            onDismiss = { actions.onDismissMapPicker() }
+        )
+        return
+    }
+
     val snackbarHostState = remember { SnackbarHostState() }
     val context = LocalContext.current
 
@@ -230,7 +247,23 @@ fun MockGpsApp(
                 )
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(12.dp))
+
+            OutlinedButton(
+                onClick = { actions.onOpenMapPicker() },
+                enabled = !uiState.isMocking && !uiState.isLoading,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Icon(
+                    painter = painterResource(id = android.R.drawable.ic_dialog_map),
+                    contentDescription = null,
+                    modifier = Modifier.size(18.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(stringResource(R.string.button_pick_on_map))
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
 
             // Action buttons
             val loadingDescription = stringResource(R.string.accessibility_loading)
@@ -342,7 +375,10 @@ private fun MockGPSAppPreview() {
                 onLongitudeChange = {},
                 onStartMocking = {},
                 onStopMocking = {},
-                onClearMessages = {}
+                onClearMessages = {},
+                onOpenMapPicker = {},
+                onMapLocationSelected = { _, _ -> },
+                onDismissMapPicker = {}
             )
         )
     }

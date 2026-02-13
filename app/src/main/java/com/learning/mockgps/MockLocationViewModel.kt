@@ -15,7 +15,10 @@ data class MockLocationActions(
     val onLongitudeChange: (String) -> Unit,
     val onStartMocking: () -> Unit,
     val onStopMocking: () -> Unit,
-    val onClearMessages: () -> Unit
+    val onClearMessages: () -> Unit,
+    val onOpenMapPicker: () -> Unit,
+    val onMapLocationSelected: (Double, Double) -> Unit,
+    val onDismissMapPicker: () -> Unit
 )
 
 class MockLocationViewModel(application: Application) : AndroidViewModel(application) {
@@ -30,7 +33,10 @@ class MockLocationViewModel(application: Application) : AndroidViewModel(applica
         onLongitudeChange = ::updateLongitude,
         onStartMocking = ::startMocking,
         onStopMocking = ::stopMocking,
-        onClearMessages = ::clearMessages
+        onClearMessages = ::clearMessages,
+        onOpenMapPicker = ::openMapPicker,
+        onMapLocationSelected = ::selectMapLocation,
+        onDismissMapPicker = ::dismissMapPicker
     )
 
     init {
@@ -79,6 +85,22 @@ class MockLocationViewModel(application: Application) : AndroidViewModel(applica
 
     fun clearMessages() {
         _uiState.value = _uiState.value.copy(errorMessage = null, successMessage = null)
+    }
+
+    fun openMapPicker() {
+        _uiState.value = _uiState.value.copy(showMapPicker = true)
+    }
+
+    fun dismissMapPicker() {
+        _uiState.value = _uiState.value.copy(showMapPicker = false)
+    }
+
+    fun selectMapLocation(lat: Double, lng: Double) {
+        _uiState.value = _uiState.value.copy(
+            latitude = lat.toString(),
+            longitude = lng.toString(),
+            showMapPicker = false
+        )
     }
 
     fun startMocking() {

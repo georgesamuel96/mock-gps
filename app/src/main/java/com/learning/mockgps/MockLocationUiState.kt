@@ -6,5 +6,6 @@ data class MockLocationUiState(
     val latitude: String = MockLocationConstants.DEFAULT_LATITUDE,
     val longitude: String = MockLocationConstants.DEFAULT_LONGITUDE,
     val errorMessage: String? = null,
-    val successMessage: String? = null
+    val successMessage: String? = null,
+    val showMapPicker: Boolean = false
 )
