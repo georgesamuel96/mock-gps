@@ -15,3 +15,4 @@ firebase-debug.log
 .externalNativeBuild
 .cxx
 local.properties
+/.idea

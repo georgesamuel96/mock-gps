@@ -39,4 +39,11 @@
 
     <!-- Accessibility -->
     <string name="accessibility_loading">Loading</string>
+
+    <!-- Notification -->
+    <string name="notification_channel_name">Mock Location</string>
+    <string name="notification_channel_description">Shows when GPS location is being mocked</string>
+    <string name="notification_title">Mock Location Active</string>
+    <string name="notification_text">Mocking: %1$s, %2$s</string>
+    <string name="notification_action_stop">Stop Mocking</string>
 </resources>
